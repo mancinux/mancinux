@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { sitePath } from "../lib/site-path";
 import SiteLayout from "./SiteLayout.astro";
 
 interface Props {
@@ -19,7 +20,7 @@ const formattedDate = new Intl.DateTimeFormat("en", {
 <SiteLayout title={`${title} — mancinux`} description={description}>
   <article class="article-shell shell">
     <header class="article-header">
-      <a class="back-link" href="/">← all notes</a>
+      <a class="back-link" href={sitePath()}>← all notes</a>
       <h1>{title}</h1>
       <p class="article-description">{description}</p>
       <div class="article-meta">

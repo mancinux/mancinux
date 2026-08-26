@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { sitePath } from "../lib/site-path";
 
 interface Props {
   posts: CollectionEntry<"blog">[];
@@ -19,7 +20,9 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
     <li>
       <article class="post-item">
         <div>
-          <h3><a href={`/posts/${post.id}/`}>{post.data.title}</a></h3>
+          <h3>
+            <a href={sitePath(`/posts/${post.id}/`)}>{post.data.title}</a>
+          </h3>
           <p>{post.data.description}</p>
         </div>
         <p class="post-date">

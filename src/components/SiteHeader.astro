@@ -1,4 +1,6 @@
 ---
+import { sitePath } from "../lib/site-path";
+
 const currentPath = Astro.url.pathname;
 
 const navigationItems = [
@@ -8,17 +10,22 @@ const navigationItems = [
 ];
 
 function isCurrentPath(href: string) {
+  const resolvedHref = sitePath(href);
+
   if (href === "/") {
-    return currentPath === href || currentPath.startsWith("/posts/");
+    return (
+      currentPath === resolvedHref ||
+      currentPath.startsWith(sitePath("/posts/"))
+    );
   }
 
-  return currentPath.startsWith(href);
+  return currentPath.startsWith(resolvedHref);
 }
 ---
 
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="wordmark" href="/" aria-label="Homepage">
+    <a class="wordmark" href={sitePath()} aria-label="Homepage">
       mancinux<span aria-hidden="true">/</span>
     </a>
 
@@ -27,7 +34,7 @@ function isCurrentPath(href: string) {
         {navigationItems.map((item) => (
           <li>
             <a
-              href={item.href}
+              href={sitePath(item.href)}
               aria-current={isCurrentPath(item.href) ? "page" : undefined}
             >
               {item.label}
@@ -48,7 +55,7 @@ function isCurrentPath(href: string) {
           {navigationItems.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={sitePath(item.href)}
                 aria-current={isCurrentPath(item.href) ? "page" : undefined}
               >
                 {item.label}

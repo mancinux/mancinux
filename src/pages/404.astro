@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../lib/site-path";
 import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
@@ -8,7 +9,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
       <p class="eyebrow">error / 404</p>
       <h1>this page is in a meeting.</h1>
       <p>it should have declined the invite.</p>
-      <a href="/">← return to the notes</a>
+      <a href={sitePath()}>← return to the notes</a>
     </div>
   </section>
 </SiteLayout>
