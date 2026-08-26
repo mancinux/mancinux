@@ -38,6 +38,5 @@ draft: false
 
 - Write article titles and headings in lowercase.
 
-Set `site` in `astro.config.mjs` when the production domain is known. Canonical
-metadata is intentionally omitted until then, so local URLs cannot leak into a
-production build.
+The production site is configured for `https://mancinux.com`. GitHub Pages uses
+the `public/CNAME` file to associate that domain with this repository.

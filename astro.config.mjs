@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://mancinux.github.io",
-  base: "/mancinux",
+  site: "https://mancinux.com",
   output: "static",
 });
