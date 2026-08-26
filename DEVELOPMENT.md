@@ -38,5 +38,5 @@ draft: false
 
 - Write article titles and headings in lowercase.
 
-The production site is configured for `https://mancinux.com`. GitHub Pages uses
-the `public/CNAME` file to associate that domain with this repository.
+The production site is configured for `https://mancinux.com`. The custom domain
+must also be saved under the repository's GitHub Pages settings.
