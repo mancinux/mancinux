@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from "astro:content";
+import SiteLayout from "./SiteLayout.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, publishedAt, readingTime } = post.data;
+
+const formattedDate = new Intl.DateTimeFormat("en", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+}).format(publishedAt);
+---
+
+<SiteLayout title={`${title} — mancinux`} description={description}>
+  <article class="article-shell shell">
+    <header class="article-header">
+      <a class="back-link" href="/">← all notes</a>
+      <h1>{title}</h1>
+      <p class="article-description">{description}</p>
+      <div class="article-meta">
+        <time datetime={publishedAt.toISOString()}>{formattedDate.toLowerCase()}</time>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime}</span>
+      </div>
+    </header>
+
+    <div class="prose article-prose">
+      <slot />
+    </div>
+  </article>
+</SiteLayout>

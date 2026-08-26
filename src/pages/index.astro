@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import lucaPortrait from "../assets/luca-mancini.png";
+import PostList from "../components/PostList.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+---
+
+<SiteLayout>
+  <div class="home shell">
+    <section class="intro">
+      <div class="intro-heading">
+        <Image
+          class="intro-avatar"
+          src={lucaPortrait}
+          alt=""
+          width={56}
+          height={56}
+          format="webp"
+        />
+        <h1>luca mancini.</h1>
+      </div>
+      <p>
+        software engineer from milan, building calm software for modern teams at <a
+          href="https://operately.com">operately</a
+        >. i (plan to) write about product design, useful ai, and clean code.
+      </p>
+      <p class="intro-links">
+        <a href="https://github.com/mancinux" rel="me">github</a>
+        <span aria-hidden="true">/</span>
+        <a href="/about/">more about me</a>
+      </p>
+    </section>
+
+    <section class="writing">
+      <div class="writing-heading">
+        <h2>writing.</h2>
+        <a href="/archive/">archive</a>
+      </div>
+      <PostList posts={posts.slice(0, 6)} />
+    </section>
+  </div>
+</SiteLayout>

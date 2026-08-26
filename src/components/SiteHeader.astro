@@ -1,0 +1,63 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navigationItems = [
+  { href: "/", label: "notes" },
+  { href: "/archive/", label: "archive" },
+  { href: "/about/", label: "about" },
+];
+
+function isCurrentPath(href: string) {
+  if (href === "/") {
+    return currentPath === href || currentPath.startsWith("/posts/");
+  }
+
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="wordmark" href="/" aria-label="Homepage">
+      mancinux<span aria-hidden="true">/</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <ul role="list">
+        {navigationItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isCurrentPath(item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+        <li><a href="https://github.com/mancinux" rel="me">github ↗</a></li>
+      </ul>
+    </nav>
+
+    <details class="mobile-nav">
+      <summary>
+        menu
+        <span class="menu-glyph" aria-hidden="true">+</span>
+      </summary>
+      <nav aria-label="Mobile navigation">
+        <ul role="list">
+          {navigationItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isCurrentPath(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li><a href="https://github.com/mancinux" rel="me">github ↗</a></li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
