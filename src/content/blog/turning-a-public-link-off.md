@@ -5,7 +5,7 @@ publishedAt: 2026-09-23
 readingTime: "2 min read"
 topics:
   - "software engineering"
-draft: true
+draft: false
 ---
 
 I recently added [public document sharing to Operately](https://github.com/operately/operately/pull/5351), so you can send someone a document without inviting them into your company’s workspace. The link gives them a read-only view, including attachments. You can disable it afterward, which gets a little more involved when the document contains files stored elsewhere.
