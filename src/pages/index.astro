@@ -6,7 +6,7 @@ import PostList from "../components/PostList.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { sitePath } from "../lib/site-path";
 
-const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+const posts = (await getCollection("blog", ({ data }) => import.meta.env.DEV || !data.draft)).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
 );
 ---

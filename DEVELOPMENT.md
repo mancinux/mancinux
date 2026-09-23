@@ -10,6 +10,8 @@ npm run dev
 ```
 
 Astro serves the site at `http://localhost:4321` by default.
+Draft posts are visible during development. Production builds and `npm run preview`
+exclude posts with `draft: true`.
 
 ## useful commands
 
